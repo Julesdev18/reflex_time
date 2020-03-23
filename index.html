@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>TEST REFLEXES</title>
+</head>
+<body>
+  <h1>Votre temps de reflex est de : <span></span>ms</h1>
+  <button>CLICK WHEN BACKGROUND IS WHITE</button>
+  <script>
+    const randomTime = Math.floor(Math.random() * 5000) + 2000
+
+    setTimeout(() => {
+      play()
+    }, randomTime)
+    
+    function play() {
+      document.body.style.background = '#fff'
+      document.querySelector('button').innerTEXT = 'CLICK ME!'
+      const beginingTime = performance.now()
+      document.querySelector('button').addEventListener('click', () => {
+        const clickTime = performance.now()
+        const reflexTime = clickTime - beginingTime
+        document.querySelector('h1').style.display = 'block'
+        document.querySelector('span').innerText = reflexTime
+        document.querySelector('button').innerText = 'PLAY AGAIN'
+        document.querySelector('button').addEventListener('click', () => {
+          location.reload()
+        })
+      })
+    }
+  </script>
+</body>
+</html>
